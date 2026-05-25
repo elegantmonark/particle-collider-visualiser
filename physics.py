@@ -9,6 +9,8 @@ particle decay channels, and detector geometry.
 import numpy as np
 from typing import Any
 
+EVENT_TYPES = {"dimuon", "dielectron", "zpeak", "higgs_4l", "ttbar", "qcd_jets"}
+
 # Particle properties: mass (GeV/c^2), charge, color, symbol
 PARTICLES = {
     "electron": {"mass": 0.000511, "charge": -1, "color": "#00c8ff", "symbol": "e-"},
@@ -131,11 +133,15 @@ def generate_event(event_type: str | None = None) -> dict[str, Any]:
     Returns:
         Event dict with metadata and particle list.
     """
+    event_type = event_type.strip() if event_type else None
+
     if event_type is None:
         event_type = np.random.choice(
             ["dimuon", "dielectron", "zpeak", "higgs_4l", "ttbar", "qcd_jets"],
             p=[0.2, 0.15, 0.25, 0.05, 0.15, 0.2],
         )
+    elif event_type not in EVENT_TYPES:
+        raise ValueError(f"Unknown event type: {event_type}")
 
     particles = []
     run = int(np.random.randint(160000, 180000))

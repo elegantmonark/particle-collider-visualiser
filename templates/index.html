@@ -258,9 +258,11 @@ function animate() {
 // ===== EVENT LOADING =====
 async function loadEvent(type) {
     document.getElementById('loading').style.display = 'flex';
-    const url = type ? `/api/event?type=${type}` : '/api/event';
+    const selectedType = type ?? document.getElementById('event-type').value;
+    const url = selectedType ? `/api/event?type=${encodeURIComponent(selectedType)}` : '/api/event';
     try {
         const res = await fetch(url);
+        if (!res.ok) throw new Error(`Event request failed: ${res.status}`);
         currentEvent = await res.json();
         renderEvent(currentEvent);
     } catch (err) {
