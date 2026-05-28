@@ -10,6 +10,17 @@
 
 ![Collider event display](docs/screenshots/event-display.png)
 
+## At A Glance
+
+| Area | Details |
+| --- | --- |
+| Interface | Three.js event display with camera controls, filters, and particle inspection |
+| Backend | FastAPI event API with procedural physics generation |
+| Physics focus | Lepton signatures, QCD jets, detector layers, magnetic-field track curvature |
+| Detector model | Simplified CMS-style tracker, ECAL, HCAL, solenoid, and muon chambers |
+| Event modes | Z peak, Higgs to four leptons, di-muon, di-electron, top pair, QCD jets |
+| Deployment | Live Render deployment plus local FastAPI server |
+
 ## Overview
 
 Particle Collider Visualiser is an interactive 3D event-display tool for simulated particle physics collisions. It generates Standard Model-inspired collision events, projects charged and neutral particle trajectories through a simplified CMS-style detector, and lets users inspect the particles, tracks, filters, detector layers, and event narrative in the browser.
@@ -21,6 +32,12 @@ The project is built as a portfolio-grade scientific visualisation system: visua
 Collider data is difficult to reason about directly because the interesting physics is hidden inside high-dimensional event records. Event displays make those records interpretable by turning particle kinematics, detector interactions, and event signatures into something spatial and inspectable.
 
 This project sits in the same direction as my broader scientific tooling work: building interfaces that make complex physical systems easier to debug, explain, and explore.
+
+## Scientific Tooling Angle
+
+The goal is not to claim detector-grade reconstruction. The goal is to build a readable event-display layer: generated event records become visible tracks, detector interactions, filters, and particle-level metadata that can be inspected in real time.
+
+That makes this project a stepping stone toward more serious physics tooling: event import formats, invariant-mass reconstruction, comparison views, and eventually real/open data integration.
 
 ## Screenshots
 
@@ -110,6 +127,8 @@ The detector is modelled as a simplified CMS-style cylindrical stack:
 - Add JSON import/export for saved event records
 - Add side-by-side comparison between selected event types
 - Add optional real/open event dataset ingestion
+- Add detector-hit overlays separate from generated truth tracks
+- Add event-quality and topology summary panels
 - Add stronger educational overlays for detector interactions and event signatures
 
 ## Run Locally
