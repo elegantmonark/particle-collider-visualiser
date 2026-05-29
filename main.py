@@ -12,7 +12,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from physics import generate_event, generate_batch, PARTICLES, DETECTOR
+from physics import generate_event, generate_batch, PARTICLES, DETECTOR, EVENT_TYPE_INFO
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -42,6 +42,8 @@ async def get_event(type: str | None = None):
     try:
         event = generate_event(type)
         return event
+    except ValueError as e:
+        return JSONResponse(status_code=400, content={"error": str(e)})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
 
@@ -68,5 +70,10 @@ async def get_detector():
     """Return detector geometry."""
     return {"detector": DETECTOR}
 
+
+@app.get("/api/event-types")
+async def get_event_types():
+    """Return supported event-generation modes and their signatures."""
+    return {"event_types": EVENT_TYPE_INFO}
 
 

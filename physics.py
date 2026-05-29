@@ -9,7 +9,34 @@ particle decay channels, and detector geometry.
 import numpy as np
 from typing import Any
 
-EVENT_TYPES = {"dimuon", "dielectron", "zpeak", "higgs_4l", "ttbar", "qcd_jets"}
+EVENT_TYPE_INFO = {
+    "dimuon": {
+        "label": "Di-muon event",
+        "signature": "Opposite-sign muon pair traversing the detector",
+    },
+    "dielectron": {
+        "label": "Di-electron event",
+        "signature": "Electron-positron pair stopping in the electromagnetic calorimeter",
+    },
+    "zpeak": {
+        "label": "Z boson decay",
+        "signature": "Clean lepton pair near the Z mass peak around 91 GeV",
+    },
+    "higgs_4l": {
+        "label": "Higgs candidate (4-lepton)",
+        "signature": "Four-lepton golden-channel-style topology near 125 GeV",
+    },
+    "ttbar": {
+        "label": "Top quark pair",
+        "signature": "Multi-object event with jets, leptons, and missing transverse energy",
+    },
+    "qcd_jets": {
+        "label": "QCD multijet event",
+        "signature": "High-multiplicity hadronic sprays from quark/gluon scattering",
+    },
+}
+
+EVENT_TYPES = set(EVENT_TYPE_INFO)
 
 # Particle properties: mass (GeV/c^2), charge, color, symbol
 PARTICLES = {
