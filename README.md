@@ -131,6 +131,10 @@ The detector is modelled as a simplified CMS-style cylindrical stack:
 - Add event-quality and topology summary panels
 - Add stronger educational overlays for detector interactions and event signatures
 
+## Current Focus
+
+Particle Collider Visualiser is the public physics/scientific-tooling repo. The next useful step is to make the analysis layer stronger: invariant mass reconstruction, event summary panels, saved event records, and eventual support for importing simple real/open event data formats.
+
 ## Run Locally
 
 ```bash
